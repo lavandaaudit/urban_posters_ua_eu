@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kyiv Urban Poster — Street Posters in the Heart of Kyiv</title>
+  <meta name="description" content="Kyiv Urban Poster — print & paste posters in central Kyiv. Launch your campaign in 48 hours with a full photo report." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============ NAVBAR ============ -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="logo">
+        <span class="logo-kyiv">KYIV</span>
+        <span class="logo-sub">URBAN<br>POSTER</span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#locations">Locations</a>
+        <a href="#cases">Cases</a>
+        <a href="#process">Process</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <button class="btn-yellow nav-cta" onclick="openModal()">Get a Quote</button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg" style="background-image:url('hero.jpg')"></div>
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <h1 class="hero-title">KYIV<br>URBAN<br>POSTER</h1>
+      <p class="hero-sub">Street posters in the heart of Kyiv.<br><span class="accent-yellow">Print + paste + photo report.</span></p>
+      <button class="btn-yellow hero-cta" onclick="openModal()">Calculate Campaign →</button>
+    </div>
+  </section>
+
+  <!-- ============ STATS ============ -->
+  <section class="stats" id="about">
+    <div class="container stats-grid">
+      <div class="stat-item">
+        <div class="stat-icon">📍</div>
+        <div class="stat-text">
+          <div class="stat-val">500+</div>
+          <div class="stat-label">locations</div>
+        </div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon">⏱</div>
+        <div class="stat-text">
+          <div class="stat-val">48 hrs</div>
+          <div class="stat-label">launch time</div>
+        </div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon">📷</div>
+        <div class="stat-text">
+          <div class="stat-val">Photo</div>
+          <div class="stat-label">reporting</div>
+        </div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon">🏙</div>
+        <div class="stat-text">
+          <div class="stat-val">City</div>
+          <div class="stat-label">centre Kyiv</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CALCULATOR ============ -->
+  <section class="calc-section" id="calculator">
+    <div class="container calc-wrapper">
+
+      <!-- LEFT: controls -->
+      <div class="calc-left">
+        <h2 class="calc-title">Calculate your campaign cost</h2>
+
+        <div class="calc-block">
+          <p class="calc-label">1. Poster format</p>
+          <div class="format-btns">
+            <button class="fmt-btn active" id="fmtA2" onclick="setFormat('A2')">
+              <strong>A2</strong><span>420 × 594 mm</span>
+            </button>
+            <button class="fmt-btn" id="fmtA1" onclick="setFormat('A1')">
+              <strong>A1</strong><span>594 × 841 mm</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="calc-block">
+          <p class="calc-label">2. Print run (pcs)</p>
+          <div class="slider-wrap">
+            <div class="slider-val-badge" id="sliderBadge">1000</div>
+            <input type="range" id="qtySlider" min="500" max="5000" step="500" value="1000"
+              oninput="updateCalc()" aria-label="Print run" />
+            <div class="slider-ticks">
+              <span>500</span><span>1000</span><span>2000</span><span>3000</span><span>5000</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-block">
+          <p class="calc-label">3. Services</p>
+          <div class="services-row">
+            <label class="checkbox-lbl">
+              <input type="checkbox" id="chkPrint" checked onchange="updateCalc()" />
+              <span class="chk-box"></span>Poster printing
+            </label>
+            <label class="checkbox-lbl">
+              <input type="checkbox" id="chkPaste" checked onchange="updateCalc()" />
+              <span class="chk-box"></span>City-wide pasting
+            </label>
+            <label class="checkbox-lbl">
+              <input type="checkbox" id="chkPhoto" checked onchange="updateCalc()" />
+              <span class="chk-box"></span>Photo report
+            </label>
+          </div>
+        </div>
+
+        <p class="price-note">ℹ All prices are in EUR incl. VAT</p>
+      </div>
+
+      <!-- RIGHT: summary -->
+      <div class="calc-right">
+        <h3 class="summary-title">YOUR CAMPAIGN</h3>
+        <div class="summary-rows">
+          <div class="sum-row">
+            <span>Format:</span><span id="sumFormat">A2</span>
+          </div>
+          <div class="sum-row">
+            <span>Print run:</span><span id="sumQty">1&thinsp;000 pcs</span>
+          </div>
+          <div class="sum-divider"></div>
+          <div class="sum-row" id="rowPrint">
+            <span>Poster printing:</span><span id="sumPrint">€ 220</span>
+          </div>
+          <div class="sum-row" id="rowPaste">
+            <span>City-wide pasting:</span><span id="sumPaste">€ 340</span>
+          </div>
+          <div class="sum-row" id="rowPhoto">
+            <span>Photo report:</span><span id="sumPhoto">€ 25</span>
+          </div>
+          <div class="sum-divider"></div>
+          <div class="sum-total-row">
+            <span>Total:</span>
+            <span class="total-price" id="sumTotal">€ 585</span>
+          </div>
+        </div>
+        <button class="btn-yellow btn-full" onclick="openModal()">Get a Proposal</button>
+        <p class="quick-reply">We reply quickly via messenger</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ LOCATIONS ============ -->
+  <section class="locations-section" id="locations">
+    <div class="container locs-wrapper">
+      <div class="locs-left">
+        <h2 class="section-title">We work in central<br>districts of Kyiv</h2>
+        <div class="map-placeholder">
+          <div class="map-bg">
+            <div class="map-pin" style="left:38%;top:28%">
+              <div class="pin-dot"></div>
+              <div class="pin-label">Kontraktova<br>Square</div>
+            </div>
+            <div class="map-pin" style="left:55%;top:45%">
+              <div class="pin-dot"></div>
+              <div class="pin-label">Poshtova<br>Square</div>
+            </div>
+            <div class="map-pin" style="left:30%;top:52%">
+              <div class="pin-dot"></div>
+              <div class="pin-label">Golden<br>Gate</div>
+            </div>
+            <div class="map-pin" style="left:60%;top:65%">
+              <div class="pin-dot"></div>
+              <div class="pin-label">Arsenalna</div>
+            </div>
+          </div>
+          <a href="#" class="btn-outline">View locations on map →</a>
+        </div>
+      </div>
+
+      <div class="locs-right" id="process">
+        <h2 class="section-title">How we work</h2>
+        <div class="process-steps">
+          <div class="proc-step">
+            <div class="proc-icon">✏️</div>
+            <div class="proc-arrow">→</div>
+          </div>
+          <div class="proc-step">
+            <div class="proc-icon">🖨</div>
+            <div class="proc-arrow">→</div>
+          </div>
+          <div class="proc-step">
+            <div class="proc-icon">🔧</div>
+            <div class="proc-arrow">→</div>
+          </div>
+          <div class="proc-step">
+            <div class="proc-icon">📷</div>
+          </div>
+        </div>
+        <div class="process-desc">
+          <div class="proc-desc-item">
+            <strong>1<br>Artwork</strong>
+            <p>Send us your design or we help you create one</p>
+          </div>
+          <div class="proc-desc-item">
+            <strong>2<br>Print</strong>
+            <p>We print on quality paper in the required quantity</p>
+          </div>
+          <div class="proc-desc-item">
+            <strong>3<br>Paste</strong>
+            <p>We paste posters at agreed locations across the city</p>
+          </div>
+          <div class="proc-desc-item">
+            <strong>4<br>Report</strong>
+            <p>We send a photo report from every pasting location</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CASES ============ -->
+  <section class="cases-section" id="cases">
+    <div class="container">
+      <div class="cases-header">
+        <h2 class="section-title">Cases</h2>
+        <a href="#" class="link-arrow">View all cases →</a>
+      </div>
+      <div class="cases-grid">
+        <div class="case-card"><img src="case1.jpg" alt="Bad Boy campaign" loading="lazy" /></div>
+        <div class="case-card"><img src="case2.jpg" alt="Faces and Laces campaign" loading="lazy" /></div>
+        <div class="case-card"><img src="case3.jpg" alt="Pasting process" loading="lazy" /></div>
+        <div class="case-card"><img src="case4.jpg" alt="Colourful poster campaign" loading="lazy" /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ + CTA ============ -->
+  <section class="bottom-section">
+    <div class="container bottom-wrapper">
+
+      <!-- FAQ -->
+      <div class="faq-col" id="faq">
+        <h2 class="section-title">FAQ</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              How fast can a campaign be launched? <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+              <p>Standard turnaround is 48 hours from artwork approval and payment. For large print runs it may take up to 72 hours.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              Which districts do you cover? <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+              <p>We operate in central Kyiv districts: Podilskyi, Shevchenkivskyi, Pecherskyi and Old Town. Over 500 pasting spots.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              Can I order pasting only, without printing? <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+              <p>Yes — if you already have printed posters we can handle pasting only. Just let us know when you fill in the form.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-col">
+        <h2 class="cta-title">Ready to launch<br>your campaign?</h2>
+        <p class="cta-sub">Leave a request and we will get back to you</p>
+        <button class="btn-yellow" onclick="openModal()">Leave a request →</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="#" class="logo logo-sm">
+        <span class="logo-kyiv">KYIV</span>
+        <span class="logo-sub">URBAN<br>POSTER</span>
+      </a>
+      <p class="footer-copy">© 2024 Kyiv Urban Poster. All rights reserved.</p>
+      <p class="footer-made">Made with ❤ for the city</p>
+    </div>
+  </footer>
+
+  <!-- ============ MODAL ============ -->
+  <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+
+      <!-- FORM STATE -->
+      <div id="modalForm">
+        <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+        <h2 class="modal-title" id="modalTitle">Get a Proposal</h2>
+        <p class="modal-sub">Leave your details — we'll get back to you within a few hours</p>
+
+        <form id="contactForm" novalidate>
+          <!-- hidden fields for formsubmit.co -->
+          <input type="hidden" name="_subject" value="New campaign request — Kyiv Urban Poster" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="Print run" id="hiddenQty" value="1000 pcs" />
+          <input type="hidden" name="Format" id="hiddenFormat" value="A2" />
+          <input type="hidden" name="Total price" id="hiddenTotal" value="" />
+
+          <div class="form-group">
+            <label class="form-label" for="fieldName">Name *</label>
+            <input class="form-input" type="text" id="fieldName" name="Name"
+              placeholder="Your name" required autocomplete="name" />
+            <span class="form-err" id="errName">Please enter your name</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="fieldPhone">Phone *</label>
+            <input class="form-input" type="tel" id="fieldPhone" name="Phone"
+              placeholder="+380 XX XXX XX XX" required autocomplete="tel" />
+            <span class="form-err" id="errPhone">Please enter your phone number</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="fieldEmail">Email</label>
+            <input class="form-input" type="email" id="fieldEmail" name="Email"
+              placeholder="you@example.com" autocomplete="email" />
+            <span class="form-err" id="errEmail">Please enter a valid email</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="fieldTelegram">Telegram</label>
+            <input class="form-input" type="text" id="fieldTelegram" name="Telegram"
+              placeholder="@username" autocomplete="off" />
+          </div>
+
+          <div class="form-group form-group--calc">
+            <label class="form-label">Selected campaign</label>
+            <div class="calc-summary-pill" id="calcSummaryPill">A2 · 1 000 pcs · € 585</div>
+          </div>
+
+          <button class="btn-yellow btn-full btn-submit" type="submit" id="btnSubmit">
+            Send request →
+          </button>
+        </form>
+      </div>
+
+      <!-- SUCCESS STATE -->
+      <div id="modalSuccess" class="modal-success" style="display:none">
+        <div class="success-icon">✓</div>
+        <h2 class="modal-title">Request sent!</h2>
+        <p class="modal-sub">We'll get back to you within a few hours. Check your messenger.</p>
+        <button class="btn-yellow" style="margin-top:24px" onclick="closeModal()">Close</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
